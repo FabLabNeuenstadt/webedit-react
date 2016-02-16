@@ -1,0 +1,12 @@
+{
+  "extends": "marudor",
+  "env": {
+    "browser": true
+  },
+  "globals": {
+    "require": false,
+    "__PROD__": false,
+    "__DEV__": false,
+    "global": false
+  }
+}
