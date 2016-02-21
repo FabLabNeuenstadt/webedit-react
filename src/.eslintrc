@@ -8,5 +8,11 @@
     "__PROD__": false,
     "__DEV__": false,
     "global": false
-  }
+  },
+  "rules": {
+    "class-property/class-property-semicolon": 1
+  },
+  "plugins": [
+    "class-property"
+  ]
 }

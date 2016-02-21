@@ -1,11 +1,12 @@
 /* @flow */
 import { createStore, bindActionCreators, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { StyleRoot, Style } from 'radium';
+import GlobalCSS from './Global.CSS.js';
 import React from 'react';
 import reduxPromise from 'redux-promise';
 
 let store;
-let renderDevtools;
 
 const reduxActions = require('redux-actions');
 reduxActions.handleActions = (function(old) {
@@ -30,36 +31,25 @@ if (__PROD__) {
   )(createStore)(reducer);
 } else {
   const DT = require('redux-devtools');
-  const DockMonitor = require('redux-devtools-dock-monitor').default;
-  const LogMonitor = require('redux-devtools-log-monitor').default;
-
-  const DevTools = DT.createDevTools(
-    <DockMonitor toggleVisibilityKey="H" changePositionKey="Q">
-      <LogMonitor/>
-    </DockMonitor>
-  );
-
 
   const createDevStore = compose(
     applyMiddleware(reduxPromise),
-    DevTools.instrument(),
     DT.persistState(
       window.location.href.match(
         /[?&]debug_session=([^&]+)\b/
       )
-    )
+    ),
+    window.devToolsExtension ? window.devToolsExtension() : f => f,
   )(createStore);
 
   store = createDevStore(reducer);
-
-  renderDevtools = () => <DevTools/>;
 }
 
 global.store = store;
 
 reduxActions.createAction = (function(old) {
   return function(...args) {
-    const action = old.apply(this, args);
+    const action = (old: any).apply(this, args);
     return bindActionCreators(action, store.dispatch);
   };
 }(reduxActions.createAction));
@@ -74,15 +64,14 @@ export default class App extends React.Component {
       store,
     };
   }
-  render(): ReactElement {
-    const monitor = __PROD__ ? null : renderDevtools();
+  render() {
     return (
-      <div>
+      <StyleRoot>
+        <Style rules={GlobalCSS.default}/>
         <Provider store={store}>
           <Webedit/>
         </Provider>
-        {monitor}
-      </div>
+      </StyleRoot>
     );
   }
 }

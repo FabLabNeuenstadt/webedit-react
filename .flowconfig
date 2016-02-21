@@ -1,0 +1,37 @@
+[ignore]
+.*node_modules/babel.*
+.*node_modules/fbjs/.*
+.*interfaces/public/\.git.*
+.*\.json
+
+[include]
+src/
+
+[libs]
+_Interfaces/
+_Interfaces/public/
+
+[options]
+module.name_mapper='.*\.css$' -> 'ModuleStub'
+module.name_mapper='.*\.css$' -> 'ModuleStub'
+module.name_mapper='^bluebird$' -> 'ModuleStub'
+module.name_mapper='^babel-polyfill$' -> 'ModuleStub'
+module.name_mapper='^redux-promise$' -> 'ModuleStub'
+module.name_mapper='^redux$' -> 'ModuleStub'
+module.name_mapper='^redux-devtools$' -> 'ModuleStub'
+module.name_mapper='^redux-devtools-dock-monitor$' -> 'ModuleStub'
+module.name_mapper='^redux-devtools-log-monitor$' -> 'ModuleStub'
+module.system=haste
+module.system.node.resolve_dirname=.
+module.system.node.resolve_dirname=node_modules
+esproposal.decorators=warn
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+unsafe.enable_getters_and_setters=true
+experimental.const_params=true
+esproposal.export_star_as=enable
+module.ignore_non_literal_requires=true
+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe\\($\\|[^(]\\|(\\(>=0\\.\\(2[0-0]\\|1[0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)
+suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(>=0\\.\\(2[0-0]\\|1[0-9]\\|[0-9]\\).[0-9]\\)? *\\(site=[a-z,_]*react_native[a-z,_]*\\)?)\\)?:? #[0-9]+
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy

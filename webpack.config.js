@@ -61,7 +61,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.css$/, loader: 'style!css!autoprefixer?browsers=last 2 version' },
+      { test: /\.css$/, loader: 'style!css' },
       { test: /^((?!CSS\.js$).)*(\.jsx?)$/,
         exclude: /(node_modules)/,
         include: /src/,
