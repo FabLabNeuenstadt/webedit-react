@@ -4,7 +4,7 @@
   "description": "Webeditor for Blinkenrockets",
   "scripts": {
     "test": "npm run build && npm run lint && flow",
-    "start": "webpack-dev-server --hot --inline --progress --history-api-fallback --content-base www",
+    "start": "webpack-dev-server --inline --progress --history-api-fallback --content-base www",
     "lint": "eslint src/**/*.js && eslint src/**/*.jsx",
     "build": "webpack"
   },

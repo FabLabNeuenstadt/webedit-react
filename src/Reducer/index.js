@@ -10,6 +10,9 @@ export default handleActions({
   SELECT_ANIMATION: (state, { payload }) => ({
     selectedAnimation: payload,
   }),
+  UPDATE_ANIMATION: (state, { payload }) => ({
+    animations: state.animations.set(payload.id, payload),
+  }),
 }, {
   animations: Map(),
   selectedAnimation: undefined,

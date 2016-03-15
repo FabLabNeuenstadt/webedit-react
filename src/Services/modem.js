@@ -33,16 +33,8 @@ export default class Modem {
   hilo: 0|1 = 0;
   data: number[];
   rawData: List<Animation>;
-  constructor() {
-    this.setData(Map({
-      '': {
-        text: 'Foobar',
-        name: 'test',
-        speed: 1,
-        direction: 0,
-        delay: 0,
-      },
-    }));
+  constructor(animations: Map<string, Animation>) {
+    this.setData(animations);
   }
   _generateSync(): number {
     this.hilo ^= 1;
@@ -67,7 +59,6 @@ export default class Modem {
       d = d.concat(this._textHeader(animation));
       d = d.concat(_.map(animation.text, char => char.charCodeAt(0)));
       return d;
-      // return _.map(animation.text, char => char.charCodeAt(0));
     }).toArray());
     this.data = [STARTCODE, STARTCODE, ...data, ENDCODE, ENDCODE];
   }
@@ -101,14 +92,17 @@ export default class Modem {
     this.data = _.flatten(_.range(0, this.data.length, 2).map(index => {
       const first = this.data[index];
       const second = this.data[index + 1];
-      return [first, second, this.data[index + 2] || 0, this.hamming(first, second)];
+      return [first, second, this.hamming(first, second)];
     }));
+    console.log(this.data);
 
-    let sound = this.generateSyncSignal(1200);
+    let sound = this.generateSyncSignal(120);
     // let sound = [];
     let count = 0;
+    const t = {};
     this.data.forEach(byte => {
       sound = sound.concat(this.modemCode(byte));
+      t[byte] = this.modemCode(byte);
       count += 1;
       if (count === 9) {
         sound = sound.concat(this.generateSyncSignal(4));
@@ -116,19 +110,6 @@ export default class Modem {
       }
     });
     sound = sound.concat(this.generateSyncSignal(4));
-    return Float32Array.from(_.flatten(sound));
+    return Float32Array.from(sound);
   }
 }
-
-const x = new Modem();
-const data = x.generateAudio();
-console.log(JSON.stringify(Array.from(data)));
-const audioCtx = new AudioContext();
-const buffer = audioCtx.createBuffer(1, data.length, 48000);
-buffer.copyToChannel(data, 0);
-
-const source = audioCtx.createBufferSource();
-source.buffer = buffer;
-source.connect(audioCtx.destination);
-
-source.start();
