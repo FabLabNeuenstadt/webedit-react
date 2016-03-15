@@ -1,22 +1,38 @@
 import React from 'react';
 import { autobind } from 'core-decorators';
-import { selectAnimation } from 'Actions/animations';
+import { selectAnimation, removeAnimation } from 'Actions/animations';
+import Radium from 'radium';
+import { FontIcon } from 'material-ui';
+
 
 type Props = {
   animation: Animation,
+  selected: bool,
 }
 
 const style = {
   wrapper: {
-    border: '1px solid grey',
+    alignItems: 'center',
+    borderColor: 'grey',
+    borderStyle: 'solid',
+    borderWidth: 1,
     display: 'flex',
     height: 50,
-    width: '100%',
     justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: 5,
+    width: '100%',
+  },
+  selected: {
+    borderColor: 'blue',
+  },
+  name: {
+    flex: '1 1 0',
   },
 };
 
+/*::`*/
+@Radium
+/*::`*/
 export default class AnimationInMenu extends React.Component {
   props: Props;
   @autobind
@@ -24,11 +40,18 @@ export default class AnimationInMenu extends React.Component {
     const { animation } = this.props;
     selectAnimation(animation);
   }
-  render() {
+  @autobind
+  removeAnimation(e: SyntheticMouseEvent) {
     const { animation } = this.props;
+    removeAnimation(animation.id);
+    e.stopPropagation();
+  }
+  render() {
+    const { animation, selected } = this.props;
     return (
-      <div style={style.wrapper} onClick={this.selectAnimation}>
-        {animation.name}
+      <div style={[style.wrapper, selected && style.selected]} onClick={this.selectAnimation}>
+        <span style={style.name}>{animation.name}</span>
+        <FontIcon className="fa fa-trash" onClick={this.removeAnimation}/>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import Modem from './modem';
 
 export function transfer(animations: Map<string, Animation>) {
-  const modem = new Modem(animations);
+  const modem = new Modem(animations.filter(a => a.text));
   const data = modem.generateAudio();
   const audioCtx = new AudioContext();
   const buffer = audioCtx.createBuffer(1, data.length, 48000);

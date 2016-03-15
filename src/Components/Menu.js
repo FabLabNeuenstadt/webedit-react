@@ -10,6 +10,7 @@ import AnimationInMenu from './AnimationInMenu';
 
 type Props = {
   animations: Map<string, Animation>,
+  selectedId: ?string,
 }
 
 const style = {
@@ -29,6 +30,7 @@ const style = {
 @Radium
 @connect(state => ({
   animations: state.animations,
+  selectedId: state.selectedAnimation ? state.selectedAnimation.id : undefined,
 }))
 /*::`*/
 export default class Menu extends React.Component {
@@ -38,12 +40,12 @@ export default class Menu extends React.Component {
     addNewAnimation('text');
   }
   render() {
-    const { animations } = this.props;
+    const { animations, selectedId } = this.props;
     return (
       <Paper style={style.wrap}>
         {
           animations.map((animation, index) => (
-            <AnimationInMenu key={index} animation={animation}/>
+            <AnimationInMenu selected={animation.id === selectedId} key={index} animation={animation}/>
           )).toArray()
         }
         <IconButton onClick={this.addNewAnimation} iconClassName="fa fa-plus"/>

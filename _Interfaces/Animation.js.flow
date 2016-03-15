@@ -1,4 +1,5 @@
 declare interface Animation {
+  id: string,
   delay?: number,
   direction?: 0|1,
   name: string,

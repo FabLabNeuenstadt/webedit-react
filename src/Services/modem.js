@@ -94,9 +94,8 @@ export default class Modem {
       const second = this.data[index + 1];
       return [first, second, this.hamming(first, second)];
     }));
-    console.log(this.data);
 
-    let sound = this.generateSyncSignal(120);
+    let sound = this.generateSyncSignal(240);
     // let sound = [];
     let count = 0;
     const t = {};
