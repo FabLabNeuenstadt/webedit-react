@@ -3,6 +3,7 @@ import Radium from 'radium';
 import React from 'react';
 import RightMenu from './RightMenu';
 import Menu from './Menu';
+import Editor from './Editor';
 
 
 const style = {
@@ -36,9 +37,7 @@ export default class Webedit extends React.Component {
         <AppBar titleStyle={style.title} iconStyleRight={style.appRight} showMenuIconButton={false} iconElementRight={<RightMenu/>} title="Blinkenrockets Editor"/>
         <div style={style.content}>
           <Menu/>
-          <div>
-            WebEdit!
-          </div>
+          <Editor/>
         </div>
       </div>
     );

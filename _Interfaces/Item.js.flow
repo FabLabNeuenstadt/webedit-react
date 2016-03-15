@@ -1,5 +1,0 @@
-declare class Item {
-  name: string,
-  type: 'text'|'pixel',
-
-}

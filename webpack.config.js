@@ -48,8 +48,7 @@ module.exports = {
   },
   context: __dirname,
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json'],
-    root: path.resolve('src')
+    root: path.resolve('src'),
   },
   entry: [
     './src/index.js'
@@ -62,7 +61,12 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.css$/, loader: 'style!css' },
-      { test: /^((?!CSS\.js$).)*(\.jsx?)$/,
+      { test: /.*\.CSS\.js$/,
+        loader: 'inline-css!babel!eslint',
+        exclude: /(node_modules)/,
+        include: /src/,
+      },
+      { test: /^((?!CSS\.js$).)*\.js$/,
         exclude: /(node_modules)/,
         include: /src/,
         loader: 'babel!eslint',

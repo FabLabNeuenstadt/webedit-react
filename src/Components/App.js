@@ -6,14 +6,13 @@ import GlobalCSS from './Global.CSS.js';
 import React from 'react';
 import reduxPromise from 'redux-promise';
 
-let store;
-
 const reduxActions = require('redux-actions');
 reduxActions.handleActions = (function(old) {
   return function(reducerMap: Object, ...rest) {
-    Object.keys(reducerMap).forEach((key, index) => {
-      reducerMap[index] = function(state, action) {
-        const newState = reducerMap[key](state, action);
+    Object.keys(reducerMap).forEach((key) => {
+      const oldReducerFunction = reducerMap[key];
+      reducerMap[key] = function(state, action) {
+        const newState = oldReducerFunction(state, action);
         return {
           ...state,
           ...newState,
@@ -25,27 +24,20 @@ reduxActions.handleActions = (function(old) {
 }(reduxActions.handleActions));
 const reducer = require('../Reducer').default;
 
-if (__PROD__) {
-  store = compose(
-    applyMiddleware(reduxPromise)
-  )(createStore)(reducer);
-} else {
-  const DT = require('redux-devtools');
+const store = global.store = compose(
+  applyMiddleware(reduxPromise),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+)(createStore)(reducer);
 
-  const createDevStore = compose(
-    applyMiddleware(reduxPromise),
-    DT.persistState(
-      window.location.href.match(
-        /[?&]debug_session=([^&]+)\b/
-      )
-    ),
-    window.devToolsExtension ? window.devToolsExtension() : f => f,
-  )(createStore);
-
-  store = createDevStore(reducer);
+/* eslint-disable */
+if (module.hot) {
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept('../Reducer', () => {
+    const nextRootReducer = require('../Reducer/index');
+    store.replaceReducer(nextRootReducer);
+  });
 }
-
-global.store = store;
+/* eslint-enable */
 
 reduxActions.createAction = (function(old) {
   return function(...args) {
@@ -67,7 +59,7 @@ export default class App extends React.Component {
   render() {
     return (
       <StyleRoot>
-        <Style rules={GlobalCSS.default}/>
+        <Style rules={GlobalCSS}/>
         <Provider store={store}>
           <Webedit/>
         </Provider>

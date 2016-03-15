@@ -1,7 +1,16 @@
 import { handleActions } from 'redux-actions';
-import { List } from 'immutable';
+import { Map } from 'immutable';
+
+export const MAX_ANIMATIONS = 248;
 
 export default handleActions({
+  ADD_ANIMATION: (state, { payload }) => ({
+    animations: state.animations.set(payload.id, payload),
+  }),
+  SELECT_ANIMATION: (state, { payload }) => ({
+    selectedAnimation: payload,
+  }),
 }, {
-  items: List([]),
+  animations: Map(),
+  selectedAnimation: undefined,
 });
