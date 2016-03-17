@@ -7,7 +7,8 @@
     "require": false,
     "__PROD__": false,
     "__DEV__": false,
-    "global": false
+    "global": false,
+    "BASE_URL": false
   },
   "rules": {
     "class-property/class-property-semicolon": 1
