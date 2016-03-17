@@ -4,6 +4,7 @@
   "description": "Webeditor for Blinkenrockets",
   "scripts": {
     "test": "npm run build && npm run lint && flow",
+    "gh-pages": "NODE_ENV=production BASE_URL=webedit-react/ webpack",
     "start": "webpack-dev-server --hot --inline --progress --history-api-fallback --content-base www",
     "lint": "eslint src/**/*.js && eslint src/**/*.jsx",
     "build": "webpack"
