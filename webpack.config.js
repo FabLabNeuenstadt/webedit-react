@@ -30,7 +30,7 @@ var plugins = [
     __DEV__: JSON.stringify(node_env !== 'production'),
     __PROD__: JSON.stringify(node_env === 'production'),
     CONFIG: JSON.stringify(config),
-    BASE_URL: JSON.stringify(`/${process.env.BASE_URL}`),
+    BASE_URL: JSON.stringify(`/${process.env.BASE_URL || ''}`),
   }),
 ];
 
