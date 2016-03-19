@@ -50,6 +50,7 @@ module.exports = {
   context: __dirname,
   resolve: {
     root: path.resolve('src'),
+    extensions: ['', '.jsx', '.js', '.json'],
   },
   entry: [
     './src/index.js'
@@ -67,7 +68,7 @@ module.exports = {
         exclude: /(node_modules)/,
         include: /src/,
       },
-      { test: /^((?!CSS\.js$).)*\.js$/,
+      { test: /^((?!CSS\.js$).)*\.jsx?$/,
         exclude: /(node_modules)/,
         include: /src/,
         loader: 'babel!eslint',

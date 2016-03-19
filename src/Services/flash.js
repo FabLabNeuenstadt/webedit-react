@@ -1,3 +1,5 @@
+// @flow
+import type { Map } from 'immutable';
 import Modem from './modem';
 
 export function transfer(animations: Map<string, Animation>) {
@@ -10,4 +12,5 @@ export function transfer(animations: Map<string, Animation>) {
   source.buffer = buffer;
   source.connect(audioCtx.destination);
   source.start();
+  setTimeout(() => audioCtx.close(), 1000);
 }

@@ -1,6 +1,6 @@
 /* @flow */
 import { Router, Route, browserHistory } from 'react-router';
-import App from './Components/App';
+import App from 'Components/App';
 import React from 'react';
 
 export default (

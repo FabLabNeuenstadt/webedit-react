@@ -16,11 +16,14 @@ node_modules/iflow-react-router/index.js.flow
 node_modules/iflow-redux-actions/index.js.flow
 node_modules/iflow-immutable/index.js.flow
 node_modules/iflow-lodash/index.js.flow
+node_modules/iflow-audiocontext/index.js.flow
+node_modules/iflow-i18next/index.js.flow
 node_modules/iflow-material-ui/index.js.flow
 node_modules/iflow-core-decorators/index.js.flow
 node_modules/iflow-uuid-js/index.js.flow
 
 [options]
+traces=5
 module.name_mapper='^.*\.css$' -> 'ModuleStub'
 module.name_mapper='^bluebird$' -> 'ModuleStub'
 module.name_mapper='^redux$' -> 'ModuleStub'

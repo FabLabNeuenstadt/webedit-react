@@ -1,0 +1,18 @@
+{
+  "headerTitle": "Blinkenrockets Editor",
+  "animation": {
+    "new": "New Animation"
+  },
+  "textEditor": {
+    "name": "Animation Name",
+    "textPlaceholder": "text to display",
+    "title": "Text Editor",
+    "speed": "speed",
+    "delay": "delay",
+    "rtl": "right To left"
+  },
+  "menu": {
+    "transfer": "Transfer",
+    "new": "New"
+  }
+}

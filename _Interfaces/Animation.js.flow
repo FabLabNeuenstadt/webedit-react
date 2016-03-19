@@ -4,6 +4,6 @@ declare interface Animation {
   direction?: 0|1,
   name: string,
   speed?: number,
-  text?: string,
+  text: string,
   type: 'text'|'pixel',
 }

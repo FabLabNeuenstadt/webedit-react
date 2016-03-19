@@ -1,13 +1,14 @@
 /* @flow */
 import { createAction } from 'redux-actions';
 import UUID from 'uuid-js';
+import { t } from 'i18next';
 
 export const addNewAnimation = createAction('ADD_ANIMATION', (type: string) => ({
   delay: 0,
   direction: 0,
   id: UUID.create().toString(),
-  name: 'New Animation',
-  speed: 1,
+  name: t('animation.new'),
+  speed: 13,
   type,
 }));
 

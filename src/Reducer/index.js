@@ -30,7 +30,7 @@ export default handleActions({
     localStorage.setItem('animations', JSON.stringify(animations.toJSON()));
     return {
       animations,
-      selectedAnimation: state.selectedAnimation.id === payload.id ? payload : state.selectedAnimation,
+      selectedAnimation: (state.selectedAnimation && state.selectedAnimation.id === payload.id) ? payload : state.selectedAnimation,
     };
   },
   REMOVE_ANIMATION: (state, { payload }) => {
@@ -41,7 +41,7 @@ export default handleActions({
     localStorage.setItem('animations', JSON.stringify(animations.toJSON()));
     return {
       animations,
-      selectedAnimation: state.selectedAnimation.id === payload ? undefined : state.selectedAnimation,
+      selectedAnimation: (state.selectedAnimation && state.selectedAnimation.id === payload) ? undefined : state.selectedAnimation,
     };
   },
   RESET: () => {

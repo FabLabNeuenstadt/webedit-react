@@ -4,7 +4,7 @@
     "transform-decorators-legacy"
   ],
   "env": {
-    "development": {
+    "hot": {
       "plugins": [
         ["react-transform", {
           "transforms": [{

@@ -1,3 +1,4 @@
+// @flow
 /* eslint no-bitwise: 0 */
 /* eslint-disable */
 import _ from 'lodash';
@@ -36,7 +37,7 @@ export default class Modem {
   constructor(animations: Map<string, Animation>) {
     this.setData(animations);
   }
-  _generateSync(): number {
+  _generateSync(): number[] {
     this.hilo ^= 1;
     return sync[this.hilo];
   }
@@ -49,6 +50,9 @@ export default class Modem {
   }
 
   _textHeader(animation: Animation): number[] {
+    if (animation.speed == null || animation.delay == null || animation.direction == null) {
+      throw new Error('Missing Speed, Delay or Direction');
+    }
     return [animation.speed << 4 | animation.delay, animation.direction << 4 | 0x00];
   }
 
@@ -95,7 +99,7 @@ export default class Modem {
       return [first, second, this.hamming(first, second)];
     }));
 
-    let sound = this.generateSyncSignal(240);
+    let sound = this.generateSyncSignal(1200);
     // let sound = [];
     let count = 0;
     const t = {};
