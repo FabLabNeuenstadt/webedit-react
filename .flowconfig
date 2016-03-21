@@ -15,6 +15,7 @@ node_modules/iflow-react-redux/index.js.flow
 node_modules/iflow-react-router/index.js.flow
 node_modules/iflow-redux-actions/index.js.flow
 node_modules/iflow-immutable/index.js.flow
+node_modules/iflow-immutable/devtools.js.flow
 node_modules/iflow-lodash/index.js.flow
 node_modules/iflow-audiocontext/index.js.flow
 node_modules/iflow-i18next/index.js.flow

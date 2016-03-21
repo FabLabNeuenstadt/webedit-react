@@ -19,6 +19,7 @@ const style = {
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
+    overflow: 'hidden',
     position: 'relative',
     width: '100%',
   },

@@ -51,6 +51,10 @@ module.exports = {
   resolve: {
     root: path.resolve('src'),
     extensions: ['', '.jsx', '.js', '.json'],
+    alias: {
+      'bluebird': 'bluebird/js/browser/bluebird.min.js',
+      'bonsai': 'bonsai/src/bootstrapper/_build/common.js',
+    },
   },
   entry: [
     './src/index.js'

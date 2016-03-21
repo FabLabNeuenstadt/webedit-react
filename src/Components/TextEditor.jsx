@@ -16,6 +16,7 @@ const style = {
     display: 'flex',
     flex: '1 1 0',
     flexDirection: 'column',
+    overflow: 'hidden',
     padding: 20,
   },
   sliderContainer: {
