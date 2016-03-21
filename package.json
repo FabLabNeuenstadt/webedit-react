@@ -1,6 +1,6 @@
 {
   "name": "webedit-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Webeditor for Blinkenrockets",
   "scripts": {
     "test": "npm run build && npm run lint && flow",
