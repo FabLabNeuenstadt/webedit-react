@@ -1,8 +1,6 @@
 import { handleActions } from 'redux-actions';
 import { Map } from 'immutable';
 
-export const MAX_ANIMATIONS = 248;
-
 const savedAnimations = localStorage.getItem('animations');
 let animations = Map();
 if (savedAnimations) {

@@ -9,7 +9,8 @@
     "title": "Text Editor",
     "speed": "speed",
     "delay": "delay",
-    "rtl": "right To left"
+    "rtl": "right To left",
+    "livePreview": "live Preview"
   },
   "menu": {
     "transfer": "Transfer",

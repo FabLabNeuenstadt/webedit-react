@@ -6,6 +6,8 @@ import React from 'react';
 
 type Props = {
   text: string,
+  speed: number,
+  livePreview: bool,
 }
 
 type State = {
@@ -21,19 +23,27 @@ const style = {
 const EMPTY_COLUMN = List(range(8).map(() => false));
 
 export default class TextPreview extends React.Component {
+  static defaultProps = {
+    text: '',
+  };
   props: Props;
   state: State = {
-    currentStart: 3,
+    currentStart: 0,
     columns: List(),
   };
+  interval: number;
   componentWillMount() {
-    this.updateColumns(this.props.text);
+    this.updateColumns(this.props);
   }
-  componentWillReceive(nextProps: Props) {
-    this.updateColumns(nextProps.text);
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
-  updateColumns(text: string) {
-    const charCodes = text.split('').map(s => s.charCodeAt(0).toString());
+  componentWillReceiveProps(nextProps: Props) {
+    this.updateColumns(nextProps);
+  }
+  updateColumns(props: Props) {
+    const { text, livePreview } = props;
+    const charCodes = (text || '').split('').map(s => s.charCodeAt(0).toString());
     this.setState({
       columns: List(flatten(
         charCodes
@@ -46,22 +56,47 @@ export default class TextPreview extends React.Component {
             .map(x => x !== '0')
           )).concat([EMPTY_COLUMN])
         )
-      )).pop(),
+      )),
     });
+    clearInterval(this.interval);
+    if (livePreview) {
+      const speed = 1000 / (1 / (0.002048 * (250 - (16 * this.props.speed))));
+      this.interval = setInterval(() => {
+        this.setState({
+          currentStart: (this.state.currentStart + 1) % this.state.columns.size || 0,
+        });
+      }, speed);
+    }
   }
   render() {
-    const { columns } = this.state;
-    const width = columns.size * 25;
+    const { columns, currentStart } = this.state;
+    const { livePreview } = this.props;
+    let visibleCols;
+    if (livePreview) {
+      visibleCols = columns.slice(currentStart, currentStart + 8);
+      let c = 0;
+      while (visibleCols.size < 8) {
+        const col = columns.get(c);
+        if (!col) {
+          break;
+        }
+        visibleCols = visibleCols.push(col);
+        c = (c + 1) % columns.size;
+      }
+    } else {
+      visibleCols = columns;
+    }
+    const width = visibleCols.size * 25;
     return (
       <div style={style}>
-      <svg height="205" width={width}>
-      <rect height="205" width={width} x="0" y="0" fill="transparent"/>
-      {
-        columns.map((col, i) => (
-          <DotColumn key={i} column={col} row={i}/>
-        ))
-      }
-      </svg>
+        <svg height="205" width={width}>
+          <rect height="205" width={width} x="0" y="0" fill="black"/>
+          {
+            visibleCols && visibleCols.map((col, i) => (
+              <DotColumn key={i} column={col} row={i}/>
+            ))
+          }
+        </svg>
       </div>
     );
   }

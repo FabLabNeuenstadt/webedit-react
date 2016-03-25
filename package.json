@@ -5,7 +5,7 @@
   "scripts": {
     "test": "npm run build && npm run lint && flow",
     "gh-pages": "NODE_ENV=production BASE_URL=webedit-react/ webpack",
-    "start": "BABEL_ENV=hot webpack-dev-server --hot --inline --progress --history-api-fallback --content-base www",
+    "start": "BABEL_ENV=hot webpack-dev-server --hot --inline --progress --history-api-fallbacck --content-base www",
     "dev": "webpack-dev-server --inline --progress --history-api-fallback --content-base www",
     "lint": "eslint src/**/*.js && eslint src/**/*.jsx",
     "build": "webpack"
@@ -70,11 +70,12 @@
     "webpack-dev-server": "^1.0.0"
   },
   "dependencies": {
-    "babel-core": "^6.7.2",
-    "babel-polyfill": "^6.7.2",
+    "babel-core": "^6.7.4",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.7.4",
+    "babel-polyfill": "^6.7.4",
     "bluebird": "^3.3.4",
     "bonsai": "^0.4.2",
-    "core-decorators": "^0.11.1",
+    "core-decorators": "^0.12.0",
     "easeljs": "^0.8.2",
     "eslint": "^2.4.0",
     "eslint-config-marudor": "^1.0.9",
@@ -82,7 +83,7 @@
     "eslint-plugin-react": "^4.2.2",
     "font-awesome": "^4.5.0",
     "history": "^2.0.1",
-    "html-webpack-plugin": "^2.12.0",
+    "html-webpack-plugin": "^2.14.0",
     "i18next": "^2.3.5",
     "iflow-audiocontext": "^1.0.24",
     "iflow-core-decorators": "^1.0.15",
