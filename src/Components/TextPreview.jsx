@@ -5,9 +5,10 @@ import font from 'font';
 import React from 'react';
 
 type Props = {
-  text: string,
-  speed: number,
   livePreview: bool,
+  rtl: bool,
+  speed: number,
+  text: string,
 }
 
 type State = {
@@ -42,7 +43,7 @@ export default class TextPreview extends React.Component {
     this.updateColumns(nextProps);
   }
   updateColumns(props: Props) {
-    const { text, livePreview } = props;
+    const { text, livePreview, rtl } = props;
     const charCodes = (text || '').split('').map(s => s.charCodeAt(0).toString());
     this.setState({
       columns: List(flatten(
@@ -63,7 +64,7 @@ export default class TextPreview extends React.Component {
       const speed = 1000 / (1 / (0.002048 * (250 - (16 * this.props.speed))));
       this.interval = setInterval(() => {
         this.setState({
-          currentStart: (this.state.currentStart + 1) % this.state.columns.size || 0,
+          currentStart: (this.state.currentStart + (rtl ? -1 : 1)) % this.state.columns.size || 0,
         });
       }, speed);
     }
@@ -86,7 +87,7 @@ export default class TextPreview extends React.Component {
     } else {
       visibleCols = columns;
     }
-    const width = visibleCols.size * 25;
+    const width = visibleCols.size * 25 + 5;
     return (
       <div style={style}>
         <svg height="205" width={width}>

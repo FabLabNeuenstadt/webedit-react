@@ -96,7 +96,7 @@ export default class TextEditor extends React.Component {
             {t('textEditor.livePreview')}
             <Toggle toggled={livePreview} onToggle={this.handlePreviewChange}/>
           </div>
-        <TextPreview livePreview={livePreview} text={animation.text} speed={animation.speed}/>
+        <TextPreview rtl={animation.direction === 1} livePreview={livePreview} text={animation.text} speed={animation.speed}/>
         <TextField style={style.noShrink} id="name" ref="name" value={animation.name} onChange={this.handleChange.bind(this, 'name')}
           floatingLabelText={t('textEditor.name')} placeholder={t('textEditor.name')}/>
         <br/>

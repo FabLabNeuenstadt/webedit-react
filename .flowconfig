@@ -26,7 +26,7 @@ node_modules/iflow-uuid-js/index.js.flow
 [options]
 traces=5
 module.name_mapper='^.*\.css$' -> 'ModuleStub'
-module.name_mapper='^bluebird$' -> 'ModuleStub'
+module.name_mapper='^@mohayonao/web-audio-api-shim$' -> 'ModuleStub'
 module.name_mapper='^redux$' -> 'ModuleStub'
 module.name_mapper='^babel-polyfill$' -> 'ModuleStub'
 module.name_mapper='^redux-promise$' -> 'ModuleStub'

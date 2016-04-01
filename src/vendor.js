@@ -2,6 +2,7 @@
 
 import 'babel-polyfill';
 import './external/babelHelper.js';
+import '@mohayonao/web-audio-api-shim';
 import BluebirdPromise from 'bluebird';
 import i18n from 'i18next';
 
@@ -20,9 +21,6 @@ i18n.t = i18n.t.bind(i18n);
 
 if (__DEV__) {
   global.i18n = i18n;
-  const Immutable = require('immutable');
-  const installDevTools = require('immutable-devtools').default;
-  installDevTools(Immutable);
 }
 // $FlowFixMe
 i18n.addResourceBundle('en', 'translation', require('./i18n/en.json'), true);
