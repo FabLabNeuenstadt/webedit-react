@@ -80,7 +80,8 @@ module.exports = {
       { test: /\.(jpg|png|gif)$/, loader: 'file!image' },
       { test: /\.woff2?(\?v=.*)?$/, loader: 'url?limit=10000&minetype=application/font-woff' },
       { test: /\.(eot|ttf|svg|otf)(\?v=.*)?$/, loader: 'url' },
-      { test: /\.json$/, loader: 'json' }
+      { test: /\.json$/, loader: 'json' },
+      { test: /\.svg$/, loader: 'svg' }
     ],
   },
   plugins,

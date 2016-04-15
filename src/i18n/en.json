@@ -15,5 +15,15 @@
   "menu": {
     "transfer": "Transfer",
     "new": "New"
+  },
+  "dialog": {
+    "cancel": "Cancel",
+    "transfer": "Transfer",
+    "submit": "Submit",
+    "title": "Transfer your data",
+    "instructions0": "Please turn on your BlinkenRocket",
+    "instructions1": "Connect the audio cable to the computer and your BlinkenRocket",
+    "instructions2": "Turn up the volume to maximum!",
+    "instructions3": "Click the transfer button"
   }
 }
