@@ -53,7 +53,7 @@ export default class Modem {
     if (animation.speed == null || animation.delay == null || animation.direction == null) {
       throw new Error('Missing Speed, Delay or Direction');
     }
-    return [animation.speed << 4 | animation.delay, animation.direction << 4 | 0x00];
+    return [animation.speed << 4 | (animation.delay * 2), animation.direction << 4 | 0x00];
   }
 
   setData(animations: Map<string, Animation>) {

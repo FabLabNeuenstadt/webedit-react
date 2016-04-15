@@ -48,6 +48,7 @@
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.8.2",
     "iflow-audiocontext": "^1.0.23",
+    "iflow-bluebird": "^1.0.19",
     "iflow-core-decorators": "^1.0.8",
     "iflow-i18next": "^1.0.21",
     "iflow-immutable": "^1.0.3",

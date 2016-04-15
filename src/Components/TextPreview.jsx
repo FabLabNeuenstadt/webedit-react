@@ -5,6 +5,7 @@ import font from 'font';
 import React from 'react';
 
 type Props = {
+  delay: number,
   livePreview: bool,
   rtl: bool,
   speed: number,
@@ -33,6 +34,7 @@ export default class TextPreview extends React.Component {
     columns: List(),
   };
   interval: number;
+  timeout: ?number;
   componentWillMount() {
     this.updateColumns(this.props);
   }
@@ -43,7 +45,7 @@ export default class TextPreview extends React.Component {
     this.updateColumns(nextProps);
   }
   updateColumns(props: Props) {
-    const { text, livePreview, rtl } = props;
+    const { text, livePreview, rtl, delay } = props;
     const charCodes = (text || '').split('').map(s => s.charCodeAt(0).toString());
     this.setState({
       columns: List(flatten(
@@ -60,13 +62,22 @@ export default class TextPreview extends React.Component {
       )),
     });
     clearInterval(this.interval);
+    clearTimeout(this.timeout);
     if (livePreview) {
       const speed = 1000 / (1 / (0.002048 * (250 - (16 * this.props.speed))));
-      this.interval = setInterval(() => {
+      const updateFn = () => {
+        const currentStart = (this.state.currentStart + (rtl ? -1 : 1)) % this.state.columns.size;
+        if (currentStart === this.state.columns.size - Math.min(8, this.state.columns.size - 2)) {
+          clearInterval(this.interval);
+          this.timeout = setTimeout(() => {
+            this.interval = setInterval(updateFn, speed);
+          }, delay * 1000);
+        }
         this.setState({
           currentStart: (this.state.currentStart + (rtl ? -1 : 1)) % this.state.columns.size || 0,
         });
-      }, speed);
+      };
+      this.interval = setInterval(updateFn, speed);
     }
   }
   render() {

@@ -96,7 +96,7 @@ export default class TextEditor extends React.Component {
             {t('textEditor.livePreview')}
             <Toggle toggled={livePreview} onToggle={this.handlePreviewChange}/>
           </div>
-        <TextPreview rtl={animation.direction === 1} livePreview={livePreview} text={animation.text} speed={animation.speed}/>
+        <TextPreview delay={animation.delay} rtl={animation.direction === 1} livePreview={livePreview} text={animation.text} speed={animation.speed}/>
         <TextField style={style.noShrink} id="name" ref="name" value={animation.name} onChange={this.handleChange.bind(this, 'name')}
           floatingLabelText={t('textEditor.name')} placeholder={t('textEditor.name')}/>
         <br/>
@@ -109,7 +109,7 @@ export default class TextEditor extends React.Component {
         </div>
         <div style={[style.sliderContainer, style.noShrink]}>
           {t('textEditor.delay')}
-          <Slider style={style.slider} value={animation.delay} step={1} min={0} max={15} onChange={this.handleDelayChange}/>
+          <Slider style={style.slider} value={animation.delay} step={0.5} min={0} max={7.5} onChange={this.handleDelayChange}/>
           {animation.delay}
         </div>
         <div style={[style.sliderContainer, style.noShrink]}>
