@@ -5,6 +5,9 @@ import './external/babelHelper.js';
 import '@mohayonao/web-audio-api-shim';
 import BluebirdPromise from 'bluebird';
 import i18n from 'i18next';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 i18n
 .init({
