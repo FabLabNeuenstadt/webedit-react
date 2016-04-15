@@ -15,16 +15,38 @@ const style = {
   },
 };
 
+type State = {
+  isOpen: bool,
+}
+
 /*::`*/
 @Radium
 /*::`*/
 export default class RightMenu extends React.Component {
+  state: State = {
+    isOpen: false,
+  };
   static contextTypes = {
     store: React.PropTypes.object.isRequired,
   };
   @autobind
   transfer() {
+    this.setState({
+      isOpen: true,
+    });
+  }
+  @autobind
+  confirmTransfer() {
     transfer(this.context.store.getState().animations);
+    this.setState({
+      isOpen: false,
+    });
+  }
+  @autobind
+  cancelTransfer() {
+    this.setState({
+      isOpen: false,
+    });
   }
   new() {
     reset();
