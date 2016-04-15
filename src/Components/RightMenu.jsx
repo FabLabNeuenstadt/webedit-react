@@ -1,13 +1,14 @@
 /* @flow */
 import { autobind } from 'core-decorators';
-import { Dialog, RaisedButton, FlatButton, FontIcon } from 'material-ui';
+import { Dialog, FlatButton, FontIcon } from 'material-ui';
+import { range } from 'lodash';
 import { reset } from 'Actions/animations';
 import { t } from 'i18next';
 import { transfer } from 'Services/flash';
+import InlineSVG from 'svg-inline-react';
 import Radium from 'radium';
 import React from 'react';
 import transferSvg from './transfer.svg';
-import { range } from 'lodash';
 
 const style = {
   wrap: {
@@ -92,7 +93,7 @@ export default class RightMenu extends React.Component {
         modal
         open={this.state.isOpen}>
         <div style={style.instructions}>
-          <img src={transferSvg}/>
+          <InlineSVG src={transferSvg}/>
         </div>
         <ul style={style.instructionList}>{
             flashInstructions.map(instruction => (

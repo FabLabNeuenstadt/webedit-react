@@ -78,10 +78,11 @@ module.exports = {
         loader: 'babel!eslint',
       },
       { test: /\.(jpg|png|gif)$/, loader: 'file!image' },
+      { test: /\.svg/, loader: 'url', include: /node_modules\/font-awesome/ },
       { test: /\.woff2?(\?v=.*)?$/, loader: 'url?limit=10000&minetype=application/font-woff' },
-      { test: /\.(eot|ttf|svg|otf)(\?v=.*)?$/, loader: 'url' },
+      { test: /\.(eot|ttf|otf)(\?v=.*)?$/, loader: 'url' },
       { test: /\.json$/, loader: 'json' },
-      { test: /\.svg$/, loader: 'svg' }
+      { test: /\.svg$/, loader: 'svg-inline' }
     ],
   },
   plugins,

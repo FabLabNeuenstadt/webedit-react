@@ -27,9 +27,11 @@ node_modules/iflow-uuid-js/index.js.flow
 [options]
 traces=5
 module.name_mapper='^.*\.css$' -> 'ModuleStub'
+module.name_mapper='^.*\.svg$' -> 'ModuleStub'
 module.name_mapper='^@mohayonao/web-audio-api-shim$' -> 'ModuleStub'
 module.name_mapper='^redux$' -> 'ModuleStub'
 module.name_mapper='^babel-polyfill$' -> 'ModuleStub'
+module.name_mapper='^svg-inline-react$' -> 'ModuleStub'
 module.name_mapper='^redux-promise$' -> 'ModuleStub'
 module.name_mapper='^react-tap-event-plugin$' -> 'ModuleStub'
 module.system=haste
