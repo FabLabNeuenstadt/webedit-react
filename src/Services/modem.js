@@ -56,12 +56,29 @@ export default class Modem {
     return [animation.speed << 4 | (animation.delay * 2), animation.direction << 4 | 0x00];
   }
 
+  _animationFrameHeader(animation: Animation): number[] {
+    return [0x02 << 4 | animation.animation.length >> 8, animation.animation.length & 0xFF];
+  }
+
+  _animationHeader(animation: Animation): number[] {
+    if (animation.speed == null || animation.delay == null) {
+      throw new Error('Missing Speed or Delay');
+    }
+    return [animation.speed, animation.delay];
+  }
+
   setData(animations: Map<string, Animation>) {
     const data = _.flatten(animations.toList().map(animation => {
       let d = [PATTERNCODE, PATTERNCODE];
-      d = d.concat(this._textFrameHeader(animation));
-      d = d.concat(this._textHeader(animation));
-      d = d.concat(_.map(animation.text, char => char.charCodeAt(0)));
+      if (animation.type === 'text') {
+        d = d.concat(this._textFrameHeader(animation));
+        d = d.concat(this._textHeader(animation));
+        d = d.concat(_.map(animation.text, char => char.charCodeAt(0)));
+      }else if (animation.type === 'pixel') {
+        d = d.concat(this._animationFrameHeader(animation));
+        d = d.concat(this._animationHeader(animation));
+        d = d.concat(_.map(animation.animation.data, char => char.charCodeAt(0)));
+      }
       return d;
     }).toArray());
     this.data = [STARTCODE, STARTCODE, ...data, ENDCODE, ENDCODE];

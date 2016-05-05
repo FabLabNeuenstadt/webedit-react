@@ -10,6 +10,7 @@ export const addNewAnimation = createAction('ADD_ANIMATION', (type: string) => (
   name: t('animation.new', { type: t(`animation.${type}`) }),
   speed: 13,
   type,
+  animation: { data: null, length: 0 },
 }));
 
 export const selectAnimation = createAction('SELECT_ANIMATION', (animation: Animation) => animation);
