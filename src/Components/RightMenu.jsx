@@ -18,8 +18,11 @@ const style = {
   },
   instructions: {
     display: 'flex',
-    justifyContent: 'center',
-    flex: '0 0 1',
+    width: '96px',
+    height: '96px',
+    paddingLeft: '30%',
+    alignContent: 'center',
+    flex: '0 1 auto',
   },
   instructionList: {
     listStyle: 'none',

@@ -17,7 +17,7 @@ export default class Editor extends React.Component {
   render() {
     const { selectedAnimation } = this.props;
     if (!selectedAnimation) {
-      return (<div>Webedit!</div>);
+      return (<div></div>);
     }
     switch (selectedAnimation.type) {
       case 'text':

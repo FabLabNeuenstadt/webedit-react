@@ -7,7 +7,7 @@ export const addNewAnimation = createAction('ADD_ANIMATION', (type: string) => (
   delay: 0,
   direction: 0,
   id: UUID.create().toString(),
-  name: t('animation.new'),
+  name: t('animation.new', { type: t(`animation.${type}`) }),
   speed: 13,
   type,
 }));

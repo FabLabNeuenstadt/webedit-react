@@ -1,11 +1,14 @@
 {
-  "headerTitle": "Blinkenrockets Editor",
+  "headerTitle": "BlinkenRocket Editor",
   "animation": {
-    "new": "New Animation"
+    "new": "New {{type}}",
+    "text": "Text",
+    "animation": "Animation",
+    "pixel": "Animation"
   },
   "textEditor": {
     "name": "Animation Name",
-    "textPlaceholder": "text to display",
+    "textPlaceholder": "Text to display",
     "title": "Text Editor",
     "speed": "speed",
     "delay": "delay",

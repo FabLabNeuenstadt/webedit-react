@@ -41,7 +41,7 @@ export default class Webedit extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div style={style.wrap}>
-        <AppBar titleStyle={style.title} iconStyleRight={style.appRight} showMenuIconButton={false} iconElementRight={<RightMenu/>} title={t('headerTitle')}/>
+        <AppBar titleStyle={style.title} showMenuIconButton={false} iconStyleRight={style.appRight} iconElementRight={<RightMenu/>} title={t('headerTitle')}/>
         <div style={style.content}>
           <Menu/>
           <Editor/>

@@ -1,4 +1,4 @@
-import { TextField, Slider, Toggle } from 'material-ui';
+import { TextField, Slider, Toggle, Paper } from 'material-ui';
 import { updateAnimation } from 'Actions/animations';
 import React from 'react';
 import TextPreview from './TextPreview';
@@ -91,17 +91,11 @@ export default class TextEditor extends React.Component {
     const { livePreview } = this.state;
     return (
       <div style={style.wrapper}>
-        <h2 style={style.noShrink}>{t('textEditor.title')}</h2>
-          <div style={[style.sliderContainer, style.noShrink]}>
-            {t('textEditor.livePreview')}
-            <Toggle toggled={livePreview} onToggle={this.handlePreviewChange}/>
-          </div>
         <TextPreview delay={animation.delay} rtl={animation.direction === 1} livePreview={livePreview} text={animation.text} speed={animation.speed}/>
         <TextField style={style.noShrink} id="name" ref="name" value={animation.name} onChange={this.handleChange.bind(this, 'name')}
           floatingLabelText={t('textEditor.name')} placeholder={t('textEditor.name')}/>
-        <br/>
-        <TextField style={style.noShrink} id="text" value={animation.text || ''} onChange={this.handleChange.bind(this, 'text')} placeholder={t('textEditor.textPlaceholder')}
-          floatingLabelText={t('textEditor.textPlaceholder')}/>
+        <TextField style={style.noShrink} id="text" ref="text" value={animation.text || ''} onChange={this.handleChange.bind(this, 'text')}
+          floatingLabelText={t('textEditor.textPlaceholder')} placeholder={t('textEditor.textPlaceholder')}/>
         <div style={[style.sliderContainer, style.noShrink]}>
           {t('textEditor.speed')}
           <Slider style={style.slider} value={animation.speed} step={1} min={0} max={15} onChange={this.handleSpeedChange}/>
@@ -113,8 +107,10 @@ export default class TextEditor extends React.Component {
           {animation.delay}
         </div>
         <div style={[style.sliderContainer, style.noShrink]}>
-          {t('textEditor.rtl')}
-          <Toggle toggled={Boolean(animation.direction)} onToggle={this.handleDirectionChange}/>
+          <Toggle label={t('textEditor.rtl')} toggled={Boolean(animation.direction)} onToggle={this.handleDirectionChange}/>
+        </div>
+        <div style={[style.sliderContainer, style.noShrink]}>
+            <Toggle label={t('textEditor.livePreview')} toggled={livePreview} onToggle={this.handlePreviewChange}/>
         </div>
       </div>
     );

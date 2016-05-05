@@ -1,9 +1,12 @@
 import React from 'react';
 import { autobind } from 'core-decorators';
+import { t } from 'i18next';
 import { selectAnimation, removeAnimation } from 'Actions/animations';
 import Radium from 'radium';
-import { FontIcon } from 'material-ui';
-
+import { FontIcon, ListItem, Avatar } from 'material-ui';
+import ActionDeleteForever from 'material-ui/svg-icons/action/delete-forever';
+import NotificationSms from 'material-ui/svg-icons/notification/sms';
+import NotificationMms from 'material-ui/svg-icons/notification/mms';
 
 type Props = {
   animation: Animation,
@@ -11,22 +14,8 @@ type Props = {
 }
 
 const style = {
-  wrapper: {
-    alignItems: 'center',
-    borderColor: 'grey',
-    borderStyle: 'solid',
-    borderWidth: 1,
-    display: 'flex',
-    height: 50,
-    justifyContent: 'center',
-    marginTop: 5,
-    width: '100%',
-  },
-  selected: {
-    borderColor: 'blue',
-  },
-  name: {
-    flex: '1 1 0',
+  root: {
+    backgroundColor: '#000',
   },
 };
 
@@ -37,6 +26,7 @@ export default class AnimationInMenu extends React.Component {
   props: Props;
   @autobind
   selectAnimation() {
+    console.log(this);
     const { animation } = this.props;
     selectAnimation(animation);
   }
@@ -49,10 +39,13 @@ export default class AnimationInMenu extends React.Component {
   render() {
     const { animation, selected } = this.props;
     return (
-      <div style={[style.wrapper, selected && style.selected]} onClick={this.selectAnimation}>
-        <span style={style.name}>{animation.name}</span>
-        <FontIcon className="fa fa-trash" onClick={this.removeAnimation}/>
-      </div>
+      <ListItem
+        leftAvatar={<Avatar icon={(animation.type === 'pixel') ? <NotificationMms /> : <NotificationSms />} />}
+        rightIcon={<ActionDeleteForever onClick={this.removeAnimation}/>}
+        primaryText={animation.name}
+        secondaryText={(animation.type === 'pixel') ? t('animation.animation') : t('animation.text')}
+        onTouchTap={this.selectAnimation}
+        style={selected && { backgroundColor: '#e0e0e0' }} />
     );
   }
 }
