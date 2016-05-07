@@ -1,6 +1,6 @@
 /* @flow */
 import { autobind } from 'core-decorators';
-import { Dialog, FlatButton, FontIcon } from 'material-ui';
+import { Dialog, RaisedButton, FlatButton } from 'material-ui';
 import { range } from 'lodash';
 import { reset } from 'Actions/animations';
 import { t } from 'i18next';
@@ -11,6 +11,9 @@ import React from 'react';
 import transferSvg from './transfer.svg';
 
 const style = {
+  button: {
+    margin: 12,
+  },
   wrap: {
     alignSelf: 'center',
     display: 'flex',
@@ -49,9 +52,11 @@ export default class RightMenu extends React.Component {
   };
   @autobind
   transfer() {
-    this.setState({
-      isOpen: true,
-    });
+    if (this.context.store.getState().animations.size > 0){
+      this.setState({
+        isOpen: true,
+      });
+    }
   }
   @autobind
   confirmTransfer() {
@@ -86,8 +91,8 @@ export default class RightMenu extends React.Component {
 
     return (
       <div style={style.wrap}>
-        <FlatButton label={t('menu.new')} icon={<FontIcon className=" fa fa-file"/>} onClick={this.new}/>
-        <FlatButton onClick={this.transfer} label={t('menu.transfer')} icon={<FontIcon className=" fa fa-wifi"/>}/>
+        <RaisedButton label={t('menu.new')} onClick={this.new} primary style={style.button}/>
+        <RaisedButton label={t('menu.transfer')} onClick={this.transfer} primary style={style.button}/>
         {/*<FlatButton label="Save" icon={<FontIcon className=" fa fa-floppy-o"/>}/>
       <FlatButton label="Load" icon={<FontIcon className=" fa fa-folder-open"/>}/>*/}
       <Dialog
@@ -95,9 +100,9 @@ export default class RightMenu extends React.Component {
         actions={actions}
         modal
         open={this.state.isOpen}>
-        <div style={style.instructions}>
+        {/*<div style={style.instructions}>
           <InlineSVG src={transferSvg}/>
-        </div>
+        </div>*/}
         <ul style={style.instructionList}>{
             flashInstructions.map(instruction => (
               <li key={instruction}>{instruction}</li>

@@ -32,8 +32,8 @@
        transform="matrix(4,0,0,4,23.053572,-24.727104)"
        style="fill:#000000;opacity:0">
 	<animate id="animation1"
-		attributeName="opacity" 
-		values="0;1;1;0" 
+		attributeName="opacity"
+		values="0;1;1;0"
 		dur="2s"
 		begin="0s;animation9.end" />
       <path
@@ -48,8 +48,8 @@
        transform="matrix(4,0,0,4,23.053572,-24.727104)"
        style="fill:#000000;opacity:0">
 	<animate id="animation2"
-		attributeName="opacity" 
-		values="0;1;1;0" 
+		attributeName="opacity"
+		values="0;1;1;0"
 		dur="2s"
 		begin="animation1.end" />
       <path
@@ -64,13 +64,13 @@
        transform="matrix(4,0,0,4,23.053572,-24.727104)"
        style="fill:#000000;opacity:0">
 	<animate id="animation3"
-		attributeName="opacity" 
-		values="0;1" 
+		attributeName="opacity"
+		values="0;1"
 		dur="1s"
 		begin="animation2.end" />
 	<animate id="animation4"
-		attributeName="opacity" 
-		values="1;0" 
+		attributeName="opacity"
+		values="1;0"
 		dur="0.1s"
 		begin="animation3.end" />
       <path
@@ -85,13 +85,13 @@
        transform="matrix(4,0,0,4,23.053572,-24.727104)"
        style="fill:#000000;opacity:0">
 	<animate id="animation5"
-		attributeName="opacity" 
-		values="0;1" 
+		attributeName="opacity"
+		values="0;1"
 		dur="1s"
 		begin="animation4.end" />
 	<animate id="animation6"
-		attributeName="opacity" 
-		values="1;0" 
+		attributeName="opacity"
+		values="1;0"
 		dur="0.1s"
 		begin="animation5.end" />
       <path
@@ -106,13 +106,13 @@
        transform="matrix(4,0,0,4,23.053572,-24.727104)"
        style="fill:#000000;opacity:0">
 	<animate id="animation7"
-		attributeName="opacity" 
-		values="0;1" 
+		attributeName="opacity"
+		values="0;1"
 		dur="1s"
 		begin="animation6.end" />
 	<animate id="animation8"
-		attributeName="opacity" 
-		values="1;1;1;0" 
+		attributeName="opacity"
+		values="1;1;1;0"
 		dur="1s"
 		begin="animation7.end" />
       <path
@@ -127,8 +127,8 @@
        transform="matrix(4,0,0,4,23.053572,-24.727104)"
        style="fill:#000000;opacity:0">
 	<animate id="animation9"
-		attributeName="opacity" 
-		values="0;1;1;0" 
+		attributeName="opacity"
+		values="0;1;1;0"
 		dur="2s"
 		begin="animation8.end" />
       <path

@@ -1,5 +1,5 @@
 {
-  "headerTitle": "BlinkenRocket Editor",
+  "headerTitle": "BlinkenRocket",
   "animation": {
     "new": "New {{type}}",
     "text": "Text",
@@ -10,8 +10,8 @@
     "name": "Animation Name",
     "textPlaceholder": "Text to display",
     "title": "Text Editor",
-    "speed": "speed",
-    "delay": "delay",
+    "speed": "Scroll speed",
+    "delay": "Delay in Seconds",
     "rtl": "right To left",
     "livePreview": "live Preview"
   },

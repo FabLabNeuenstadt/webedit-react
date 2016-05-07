@@ -9,16 +9,19 @@ type Props = {
 }
 
 const ON = 'red';
-const OFF = 'grey';
+const OFF = 'slategrey';
 
 export default class DotColumn extends React.Component {
   props: Props;
+  customEvent() {
+    console.log('hey');
+  }
   render() {
     const { column, row } = this.props;
     return (
       <g>
         {column.map((on, index) => (
-          <circle key={index} r="10" cy={index * 25 + 15} cx={row * 25 + 15} fill={on ? ON : OFF}/>
+          <circle key={index} r="10" cy={index * 25 + 15} cx={row * 25 + 15} fill={on ? ON : OFF} onClick={this.customEvent} />
         ))}
       </g>
     );
