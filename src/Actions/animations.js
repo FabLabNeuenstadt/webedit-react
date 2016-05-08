@@ -9,6 +9,7 @@ export const addNewAnimation = createAction('ADD_ANIMATION', (type: string) => (
   id: UUID.create().toString(),
   name: t('animation.new', { type: t(`animation.${type}`) }),
   speed: 13,
+  creationDate: Math.floor(new Date() / 1000),
   type,
   animation: { data: null, length: 0 },
 }));

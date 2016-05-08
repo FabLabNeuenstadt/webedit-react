@@ -5,6 +5,7 @@ declare interface Animation {
   name: string,
   speed?: number,
   text: string,
+  creationDate: number,
   type: 'text'|'pixel',
   animation: {length: number, data: number[]},
 }

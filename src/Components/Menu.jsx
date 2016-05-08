@@ -45,6 +45,7 @@ export default class Menu extends React.Component {
   addNewAnimation() {
     addNewAnimation('pixel');
   }
+
   render() {
     const { animations, selectedId } = this.props;
     console.log(this);
@@ -53,7 +54,7 @@ export default class Menu extends React.Component {
               <List>
                 {
                   animations.map((animation, index) => (
-                    <AnimationInMenu selected={animation.id === selectedId} key={index} animation={animation}/>
+                    <AnimationInMenu selected={animation.id === selectedId} key={animation.creationDate} animation={animation}/>
                   )).toArray()
                 }
               <Divider />
