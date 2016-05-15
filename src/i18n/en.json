@@ -25,7 +25,9 @@
   },
   "menu": {
     "transfer": "Transfer",
-    "new": "New"
+    "new": "New",
+    "addAnimation": "New Animation",
+    "addText": "New Text"
   },
   "dialog": {
     "cancel": "Cancel",

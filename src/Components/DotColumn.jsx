@@ -19,7 +19,7 @@ export default class DotColumn extends React.Component {
     return (
       <g>
         {column.map((on, index) => (
-          <circle key={index} r="10" cy={index * 25 + 15} cx={row * 25 + 15} fill={on ? ON : OFF} onClick={callback.bind(this, index, row)} />
+          <circle key={index} r="10" cy={index * 25 + 15} cx={row * 25 + 15} fill={on ? ON : OFF} onClick={callback && callback.bind(this, index, row)} />
         ))}
       </g>
     );

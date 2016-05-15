@@ -57,7 +57,7 @@ export default class Modem {
   }
 
   _animationFrameHeader(animation: Animation): number[] {
-    return [0x02 << 4 | animation.animation.length >> 8, animation.animation.length & 0xFF];
+    return [0x02 << 4 | animation.animation.data.size >> 8, animation.animation.data.size & 0xFF];
   }
 
   _animationHeader(animation: Animation): number[] {
@@ -70,6 +70,7 @@ export default class Modem {
   setData(animations: Map<string, Animation>) {
     const data = _.flatten(animations.toList().map(animation => {
       let d = [PATTERNCODE, PATTERNCODE];
+      console.log(animation);
       if (animation.type === 'text') {
         d = d.concat(this._textFrameHeader(animation));
         d = d.concat(this._textHeader(animation));
@@ -77,11 +78,12 @@ export default class Modem {
       }else if (animation.type === 'pixel') {
         d = d.concat(this._animationFrameHeader(animation));
         d = d.concat(this._animationHeader(animation));
-        d = d.concat(_.map(animation.animation.data, char => char.charCodeAt(0)));
+        d = d.concat(animation.animation.data.toArray());
       }
       return d;
     }).toArray());
     this.data = [STARTCODE, STARTCODE, ...data, ENDCODE, ENDCODE];
+    console.log(this.data);
   }
 
   modemCode(rawByte: number): number[] {

@@ -26,7 +26,6 @@ export default class AnimationInMenu extends React.Component {
   props: Props;
   @autobind
   selectAnimation() {
-    console.log(this);
     const { animation } = this.props;
     selectAnimation(animation);
   }

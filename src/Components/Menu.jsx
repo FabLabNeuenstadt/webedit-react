@@ -48,7 +48,6 @@ export default class Menu extends React.Component {
 
   render() {
     const { animations, selectedId } = this.props;
-    console.log(this);
     return (
         <Paper style={style.wrap}>
               <List>
@@ -60,11 +59,11 @@ export default class Menu extends React.Component {
               <Divider />
                 <ListItem
                   leftAvatar={<Avatar icon={<NotificationSms />} />}
-                  primaryText="Add Text"
+                  primaryText={t('menu.addText')}
                   onTouchTap={this.addNewAnimationText} />
                 <ListItem
                   leftAvatar={<Avatar icon={<NotificationMms />} />}
-                  primaryText="Add Animation"
+                  primaryText={t('menu.addAnimation')}
                   onTouchTap={this.addNewAnimation} />
               </List>
         </Paper>

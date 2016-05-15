@@ -80,10 +80,7 @@ export default class TextPreview extends React.Component {
       this.interval = setInterval(updateFn, speed);
     }
   }
-  customEvent(i, row) {
-    console.log(i);
-    console.log(row);
-  }
+
   render() {
     const { columns, currentStart } = this.state;
     const { livePreview } = this.props;

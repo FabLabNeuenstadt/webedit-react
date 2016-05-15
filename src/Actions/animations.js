@@ -2,6 +2,10 @@
 import { createAction } from 'redux-actions';
 import UUID from 'uuid-js';
 import { t } from 'i18next';
+import { List } from 'immutable';
+import { padStart, flatten, range } from 'lodash';
+
+const EMPTY_DATA = List(range(8).map(() => 0x00));
 
 export const addNewAnimation = createAction('ADD_ANIMATION', (type: string) => ({
   delay: 0,
@@ -11,7 +15,7 @@ export const addNewAnimation = createAction('ADD_ANIMATION', (type: string) => (
   speed: 13,
   creationDate: Math.floor(new Date() / 1000),
   type,
-  animation: { data: null, currentFrame: 0, frames: 0, length: 0 },
+  animation: { data: EMPTY_DATA, currentFrame: 0, frames: 1, length: 1 },
 }));
 
 export const selectAnimation = createAction('SELECT_ANIMATION', (animation: Animation) => animation);

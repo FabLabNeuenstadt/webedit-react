@@ -35,10 +35,18 @@ export default class PixelPreview extends React.Component {
   }
 
   updateColumns(props: Props) {
-    const { columns, callback } = props;
+    const { data, frame, callback } = props;
+
+    let frameData = data.slice(8 * frame, 8 * frame + 8);
+
+    frameData = frameData.map((hexColumn: number) => padStart(hexColumn.toString(2), 8, '0'));
+    frameData = frameData.map(column => List(
+      column.split('')
+      .map(x => x !== '0')
+    ));
 
     this.setState({
-      columns: List(columns),
+      columns: frameData,
     });
 
   }
