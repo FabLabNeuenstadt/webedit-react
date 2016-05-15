@@ -6,6 +6,7 @@ import type { List } from 'immutable';
 type Props = {
   column: List<bool>,
   row: number,
+  callback: () => void,
 }
 
 const ON = 'red';
@@ -13,15 +14,12 @@ const OFF = 'slategrey';
 
 export default class DotColumn extends React.Component {
   props: Props;
-  customEvent() {
-    console.log('hey');
-  }
   render() {
-    const { column, row } = this.props;
+    const { column, row, callback } = this.props;
     return (
       <g>
         {column.map((on, index) => (
-          <circle key={index} r="10" cy={index * 25 + 15} cx={row * 25 + 15} fill={on ? ON : OFF} onClick={this.customEvent} />
+          <circle key={index} r="10" cy={index * 25 + 15} cx={row * 25 + 15} fill={on ? ON : OFF} onClick={callback.bind(this, index, row)} />
         ))}
       </g>
     );

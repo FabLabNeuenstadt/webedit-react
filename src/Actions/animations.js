@@ -11,7 +11,7 @@ export const addNewAnimation = createAction('ADD_ANIMATION', (type: string) => (
   speed: 13,
   creationDate: Math.floor(new Date() / 1000),
   type,
-  animation: { data: null, length: 0 },
+  animation: { data: null, currentFrame: 0, frames: 0, length: 0 },
 }));
 
 export const selectAnimation = createAction('SELECT_ANIMATION', (animation: Animation) => animation);

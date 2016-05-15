@@ -1,4 +1,4 @@
-import { TextField, Slider, Toggle, Paper } from 'material-ui';
+import { TextField, Slider, Toggle, Paper, Divider } from 'material-ui';
 import { updateAnimation } from 'Actions/animations';
 import React from 'react';
 import TextPreview from './TextPreview';
@@ -91,6 +91,7 @@ export default class TextEditor extends React.Component {
     return (
       <div style={style.wrapper}>
         <TextPreview delay={animation.delay} rtl={animation.direction === 1} livePreview={livePreview} text={animation.text} speed={animation.speed}/>
+        <Divider />
         <TextField style={style.noShrink} id="name" ref="name" value={animation.name} onChange={this.handleChange.bind(this, 'name')}
           floatingLabelText={t('textEditor.name')} placeholder={t('textEditor.name')} floatingLabelFixed/>
         <TextField style={style.noShrink} id="text" ref="text" value={animation.text || ' '} onChange={this.handleChange.bind(this, 'text')}

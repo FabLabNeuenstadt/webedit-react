@@ -80,6 +80,10 @@ export default class TextPreview extends React.Component {
       this.interval = setInterval(updateFn, speed);
     }
   }
+  customEvent(i, row) {
+    console.log(i);
+    console.log(row);
+  }
   render() {
     const { columns, currentStart } = this.state;
     const { livePreview } = this.props;
@@ -105,7 +109,7 @@ export default class TextPreview extends React.Component {
           <rect height="205" width={width} x="0" y="0" fill="black"/>
           {
             visibleCols && visibleCols.map((col, i) => (
-              <DotColumn key={i} column={col} row={i}/>
+              <DotColumn key={i} column={col} row={i} callback={this.customEvent}/>
             ))
           }
         </svg>
