@@ -92,6 +92,7 @@ export default class PixelEditor extends React.Component {
   @autobind
   handleNextFrame() {
     const { animation } = this.props;
+    console.log(animation);
     // check whether next frame would violate the MAX_ANIMATION_FRAMES limit
     if (animation.animation.currentFrame + 1 === MAX_ANIMATION_FRAMES - 1) {
       return;
@@ -161,6 +162,8 @@ export default class PixelEditor extends React.Component {
   @autobind
   updateAnimationPoint(y, x) {
     const { animation } = this.props;
+    // for safety reasons
+    animation.animation.data = List(animation.animation.data);
 
     console.log(`Someone clicked: x: ${x} y: ${y}!`);
 

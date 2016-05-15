@@ -53,14 +53,15 @@ export default class PixelPreview extends React.Component {
 
   render() {
     const { columns } = this.state;
-    const width = columns.size * 25 + 5;
+    const cols = List(columns);
+    const width = cols.size * 25 + 5;
 
     return (
       <div style={style}>
         <svg height="205" width={width}>
           <rect height="205" width={width} x="0" y="0" fill="black"/>
           {
-            columns && columns.map((col, i) => (
+            cols && cols.map((col, i) => (
               <DotColumn key={i} column={col} row={i} callback={this.props.callback}/>
             ))
           }
