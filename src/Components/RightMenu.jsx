@@ -99,6 +99,7 @@ export default class RightMenu extends React.Component {
         title={t('dialog.title')}
         actions={actions}
         modal
+        autoScrollBodyContent
         open={this.state.isOpen}>
         {/*<div style={style.instructions}>
           <InlineSVG src={transferSvg}/>

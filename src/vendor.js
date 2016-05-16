@@ -13,6 +13,7 @@ i18n
 .init({
   debug: __DEV__,
   lng: 'en',
+  supportedLngs: ['en', 'de'],
   interpolation: {
     escapeValue: false,
     nestingPrefix: '\$t\(',
